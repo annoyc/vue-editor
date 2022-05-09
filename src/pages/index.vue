@@ -11,6 +11,6 @@ const state = $ref(data)
 
 <template>
   <div h="1/1">
-    <Editor :data="state"></Editor>
+    <Editor :modelValue="state"></Editor>
   </div>
 </template>
