@@ -1,4 +1,5 @@
-import { defineComponent, PropType } from 'vue'
+import { PropType } from 'vue'
+import EditorBlock from './EditorBlock'
 
 interface PropData {
   container: Container
@@ -8,15 +9,13 @@ interface Container {
   width: number | string,
   height: number | string
 }
-interface BlockItem {
+export interface BlockItem {
   top: number,
   left: number,
   zIndex: number,
   key: string,
 }
-interface Block {
-  [key: number]: BlockItem
-}
+type Block = BlockItem[]
 
 export default defineComponent({
   name: 'Editor',
@@ -28,15 +27,31 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { modelValue } = $$(props)
-    console.log(modelValue.container)
+
+    const data: PropData = $computed({
+      get() {
+        return props.modelValue
+      },
+      set(value) {}
+    })
+
+    const containerStyle = $computed(() => ({
+      width: data.container.width + 'px',
+      height: data.container.height + 'px'
+    }))
+
     return () => <div className="flex h-1/1">
-      <div className="w-200px bg-pink h-1/1 p-2">左侧物料区</div>
+      <div className="w-200px bg-pink h-1/1 p-2">
+        {data.blocks.map(block => (
+            <EditorBlock block={block} />
+          ))
+        }
+      </div>
       <div className="flex-1 relative mx-10px">
         <div className="absolute p-2 w-1/1 h-100px top-0 bg-dark">菜单栏</div>
         <div className="pt-110px p-2 h-1/1 bg-orange">
-          <div className="w">
-
+          <div className="h-1/1 overflow-scroll">
+            <div className="bg-yellow" style={containerStyle}></div>
           </div>
         </div>
       </div>
