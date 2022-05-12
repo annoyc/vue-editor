@@ -1,6 +1,6 @@
 import { PropType } from 'vue'
 import EditorBlock from './EditorBlock'
-import { configKey } from '~/pages/index.vue'
+import { returnType } from '~/utils/editor-config'
 interface PropData {
   container: Container
   blocks: Block
@@ -17,7 +17,6 @@ export interface BlockItem {
 }
 type Block = BlockItem[]
 
-
 export default defineComponent({
   name: 'Editor',
   props: {
@@ -33,13 +32,11 @@ export default defineComponent({
       get() {
         return props.modelValue
       },
-      set(value) {}
+      set(value) { }
     })
 
-    const config = inject(configKey)
+    const config = inject('configKey') as returnType
 
-    
-    
 
     const containerStyle = $computed(() => ({
       width: data.container.width + 'px',
@@ -49,7 +46,7 @@ export default defineComponent({
     return () => <div className="flex h-1/1">
       <div className="w-200px bg-pink h-1/1 p-2">
         {
-          config?.componentList.map(component=>(
+          config.componentList.map(component => (
             <div className="block m-4">
               {component.preview()}
             </div>
@@ -61,11 +58,11 @@ export default defineComponent({
         <div className="pt-110px p-2 h-1/1 bg-orange">
           <div className="h-1/1 overflow-scroll">
             <div className="bg-yellow pos-relative" style={containerStyle}>
-            {
-              data.blocks.map(block => (
-                <EditorBlock block={block} />
-              ))
-            }
+              {
+                data.blocks.map(block => (
+                  <EditorBlock block={block} />
+                ))
+              }
             </div>
           </div>
         </div>
