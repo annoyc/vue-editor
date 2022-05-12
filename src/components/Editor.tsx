@@ -43,11 +43,12 @@ export default defineComponent({
       height: data.container.height + 'px'
     }))
 
-    return () => <div className="flex h-1/1">
-      <div className="w-200px bg-pink h-1/1 p-2">
+    return () => <div className="flex h-full">
+      <div className="w-250px bg-pink h-full p-2">
         {
           config.componentList.map(component => (
-            <div className="block m-4">
+            <div className="pos-relative block m-4 p-8 cursor-move bg-#fff box-border after:(content-none bg-#333 pos-absolute left-0 top-0 bottom-0 right-0 opacity-20)" draggable>
+              <span className="pos-absolute left-0 top-0 bg-blueGray">{component.label}</span>
               {component.preview()}
             </div>
           ))
@@ -55,8 +56,8 @@ export default defineComponent({
       </div>
       <div className="flex-1 relative mx-10px">
         <div className="absolute p-2 w-1/1 h-100px top-0 bg-dark">菜单栏</div>
-        <div className="pt-110px p-2 h-1/1 bg-orange">
-          <div className="h-1/1 overflow-scroll">
+        <div className="pt-110px p-2 h-full bg-orange">
+          <div className="h-full overflow-scroll">
             <div className="bg-yellow pos-relative" style={containerStyle}>
               {
                 data.blocks.map(block => (
@@ -67,7 +68,7 @@ export default defineComponent({
           </div>
         </div>
       </div>
-      <div className="w-200px p-2 bg-amber h-1/1">属性控制区</div>
+      <div className="w-200px p-2 bg-amber h-full">属性控制区</div>
     </div>
   }
 })

@@ -49,4 +49,16 @@ registerConfig.register({
   preview: () => <el-input placeholder="预览输入框"></el-input>,
   render: () => <el-input placeholder="渲染输入框"></el-input>,
 })
+registerConfig.register({
+  key: 'select',
+  label: '下拉选择',
+  preview: () => <el-select placeholder="预览下拉选择"></el-select>,
+  render: () => <el-select placeholder="渲染下拉选择"></el-select>,
+})
+registerConfig.register({
+  key: 'datepicker',
+  label: '标签',
+  preview: () => <el-tag> 预览标签</el-tag>,
+  render: () => <el-tag>渲染标签</el-tag>,
+})
 
