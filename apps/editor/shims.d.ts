@@ -4,7 +4,7 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
-
+// declare module '@zyc/shared';
 declare module '@vue/runtime-dom' {
   interface HTMLAttributes extends AttributifyAttributes {}
 }

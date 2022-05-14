@@ -18,8 +18,9 @@
       "vite-plugin-pages/client"
     ],
     "paths": {
-      "~/*": ["src/*"]
-    }
+      "~/*": ["apps/editor/src/*"],
+      "@zyc/shared": ["packages/shared/src/index"]
+    },
   },
   "exclude": ["dist", "node_modules"]
 }
