@@ -9,12 +9,27 @@ import 'uno.css'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import { loadScript } from './utils/utils'
 
-const app = createApp(App)
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
-app.use(router)
-app.use(ElementPlus)
-app.mount('#app')
+
+import { materialList } from '~/data'
+
+Promise.all(materialList.map(m => loadScript(m.source))).then(() => {
+  const app = createApp(App)
+  materialList.forEach(m => {
+    const { render } = (window as any) [m.name]
+    app.component(m.name, render)
+  })
+  console.log(app)
+  app.use(router)
+  app.use(ElementPlus)
+  app.mount('#app')
+})
+
+
+

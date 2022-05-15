@@ -1,5 +1,5 @@
 {
-  "name": "@zyc/shared",
+  "name": "@zyc/image",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.cjs",
@@ -14,14 +14,17 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
-    "stub": "unbuild --stub",
-    "test": "vitest"
+    "dev": "vite",
+    "build": "vite build"
   },
   "keywords": [],
-  "author": "",
+  "author": "zyc",
   "license": "ISC",
   "devDependencies": {
-    "unbuild": "^0.7.4"
+    "@vitejs/plugin-vue": "^2.3.1",
+    "vite": "^2.9.7"
+  },
+  "dependencies": {
+    "vue": "^3.2.33"
   }
 }

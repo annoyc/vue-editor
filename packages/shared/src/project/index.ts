@@ -93,7 +93,7 @@ export class Page implements IPage {
   }
 }
 
-class PageElement implements IElement {
+export class PageElement implements IElement {
   public static create(e?: IElement) {
     const element = new PageElement()
     if (e) {
