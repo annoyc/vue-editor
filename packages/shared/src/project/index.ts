@@ -1,6 +1,7 @@
 import { uuid } from '../utils'
 
 export interface IProject {
+  id: string
   name: string
   description: string
   pages: IPage[];
@@ -21,6 +22,7 @@ export interface IElement {
 }
 
 export class Project implements IProject {
+  public id: string = uuid();
   public name: string = 'New Project';
   public description: string = 'New Project Description';
   public pages: Page[] = [];
@@ -28,6 +30,7 @@ export class Project implements IProject {
   public static create(p?: IProject) {
     const project = new Project()
     if (p) {
+      project.id = p.id
       project.name = p.name
       project.description = p.description
       project.pages = p.pages.map(page => Page.create(page))
@@ -51,6 +54,7 @@ export class Project implements IProject {
   }
   public getJSON() {
     return {
+      id: this.id,
       name: this.name,
       description: this.description,
       pages: this.pages.map(p => p.getJSON())
@@ -86,6 +90,7 @@ export class Page implements IPage {
   }
   public getJSON() {
     return {
+      id: this.id,
       name: this.name,
       description: this.description,
       elements: this.elements.map(e => e.getJSON())
